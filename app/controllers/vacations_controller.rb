@@ -4,7 +4,8 @@ class VacationsController < ApplicationController
   end
 
   def create
-    
+    @vacation = Vacation.create(params[:vacation].permit!)
+    redirect_to user_path(current_user.id)
   end
 
   def show
