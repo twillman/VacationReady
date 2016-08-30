@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818152659) do
+ActiveRecord::Schema.define(version: 20160830123644) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160818152659) do
     t.integer "duration"
     t.date    "date"
     t.integer "user_id"
+    t.integer "adults"
+    t.integer "kids"
   end
 
   add_index "vacations", ["user_id"], name: "index_vacations_on_user_id"

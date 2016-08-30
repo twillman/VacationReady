@@ -1,7 +1,7 @@
-<h3>Enter the details for your new vacation</h3>
+<h3>Enter the details for your vacation</h3>
 <%= form_for @vacation do |f| %>
 <div class = "form-group">
-  Name This Vacation: <%= f.text_field :name %></br>
+  Name: <%= f.text_field :name %></br>
   Location: <%= f.select :location, '<option>Walt Disney World</option><option>Las Vegas</option>'.html_safe %></br>
   Date: <%= f.date_select :date, start_year: 2016 %></br>
   Duration: <%= f.select :duration, '<option value=1>1</option><option value=2>2</option><option value=3>3</option><option value=4>4</option>'.html_safe %> nights</br>
@@ -12,3 +12,4 @@
   <%= f.submit %>
 </div>
 <% end %>
+<small><%= link_to "Back", vacation_path(@vacation) %></small>

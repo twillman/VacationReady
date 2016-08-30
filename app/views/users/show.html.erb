@@ -3,5 +3,5 @@
 <%= link_to "New Vacation", new_vacation_path, class: 'btn btn-success' %></br>
 <% @user.vacations.each do |vacation| %>
   <%= link_to vacation.name, vacation_path(vacation) %>
-  <%= (vacation.date - Time.now.to_date).to_i %></br>
+  <%= (vacation.date - Time.now.to_date).to_i %> days to go!</br>
 <% end %>

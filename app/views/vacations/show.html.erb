@@ -1,0 +1,15 @@
+<h2><%= @vacation.name %></h2>
+<h3><%= (@vacation.date - Time.now.to_date).to_i %> days left until your vacation to <%= @vacation.location %>!! You'll be departing on <%= @vacation.date %> for <%= @vacation.duration %> nights with a party of <%= @vacation.adults %> adults and <%= @vacation.kids %> kids and a budget of <%= @vacation.budget %> dollars.</h3>
+<small><%= link_to "Edit my vacation details", edit_vacation_path(@vacation)%>
+</br></br>
+<ul><h4>My Planning Timeline</h4>
+  <li>6 months out: Book your hotel</li>
+  <li>180 days out: Book your dining</li>
+  <li>90 days out: Book your flights</li>
+  <li>31 (Or 61 days out for WDW Resort Guests): Purchase your park tickets</li>
+  <li>30 (0r 60 days out for WDW Resort Guests): Make your Fastpass+ reservations</li>
+  <li>31 days out: Finalize any Magic Band customizations</li></ul>
+</br>
+<ul><h4>My Saved Articles</h4></ul></br>
+<ul><h4>My Checklists</h4></ul>
+<%= link_to "Back to my vacations", user_path(current_user.id) %>
