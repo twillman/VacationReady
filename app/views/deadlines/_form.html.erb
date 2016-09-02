@@ -1,0 +1,29 @@
+<%= form_for(@deadline) do |f| %>
+  <% if @deadline.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@deadline.errors.count, "error") %> prohibited this deadline from being saved:</h2>
+
+      <ul>
+      <% @deadline.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :due_date %><br>
+    <%= f.date_select :due_date %>
+  </div>
+  <div class="field">
+    <%= f.label :task %><br>
+    <%= f.text_field :task %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

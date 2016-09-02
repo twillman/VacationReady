@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830123644) do
+ActiveRecord::Schema.define(version: 20160902052945) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.integer  "vacation_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "deadlines", force: :cascade do |t|
+    t.date     "due_date"
+    t.string   "task"
+    t.string   "status"
+    t.integer  "vacation_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

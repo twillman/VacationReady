@@ -1,0 +1,9 @@
+<h1>New Article</h1>
+<%= form_for @article do |f| %>
+<div class = "form-group">
+  Title of Article: <%= f.text_field :title %></br>
+  URL: <%= f.text_field :url %></br>
+  Vacation: <%= f.collection_select :vacation_id, current_user.vacations, :id, :name %></br>
+  <%= f.submit %>
+</div>
+<% end %>
