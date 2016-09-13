@@ -1,0 +1,8 @@
+<h1>New Checklist</h1>
+<%= form_for @checklist do |f| %>
+<div class = "form-group">
+  Name of Checklist: <%= f.text_field :name %></br>
+  Vacation: <%= f.collection_select :vacation_id, current_user.vacations, :id, :name %></br>
+  <%= f.submit %>
+</div>
+<% end %>

@@ -2,11 +2,46 @@
 <h3><%= (@vacation.date - Time.now.to_date).to_i %> days left until your vacation to <%= @vacation.location %>!! You'll be departing on <%= @vacation.date %> for <%= @vacation.duration %> nights with a party of <%= @vacation.adults %> adults and <%= @vacation.kids %> kids and a budget of <%= @vacation.budget %> dollars.</h3>
 <small><%= link_to "Edit my vacation details", edit_vacation_path(@vacation)%>
 </br></br>
-<ul><h4>My Planning Timeline</h4>
+<ol><h4>My Planning Timeline</h4>
+
+
+  *Today <%= Date.today %>
+  <% i=1 %>
   <% @vacation.deadlines.each do |dl| %>
-    <li><%= dl.task %></li>
+    <% if (dl.due_date - Date.today).to_i < 0 %>
+      <% i+=1 %>
+      <% end %>
+  <%end %>
+  <% n=i %>
+  <% first = nil %>
+  <% (@vacation.date - Date.today).to_i.times do |day| %>
+    <% if deadline = @vacation.deadlines.find_by(due_date: (Date.today + day.days))  %>
+
+      <% if first.nil? %>
+        <span style="color: red"><%= i %></span>
+        <% first = true %>
+      <% else %>
+        <%= i %>
+      <% end %>
+      <% i+=1%>
+    <% else %>
+      -
+    <% end %>
   <% end %>
-</ul>
+  *Vacation <%= @vacation.date %>
+
+
+
+  <% c = 1 %>
+  <% @vacation.deadlines.each do |dl| %>
+    <% if c==n %>
+      <li><span style="color: red"><%= dl.task %></span></li>
+    <% else %>
+      <li><%= dl.task %></li>
+    <% end %>
+    <% c+=1 %>
+  <% end %>
+</ol>
 </br>
 <ul><h4>My Saved Articles</h4>
   <%= link_to "Add Article", new_article_path%></br>
@@ -14,5 +49,10 @@
     <li><%= link_to article.title, article.url %></li>
   <% end %>
 </ul>
-<ul><h4>My Checklists</h4></ul>
+<ul><h4>My Checklists</h4>
+<%= link_to "Add Checklist", new_checklist_path%></br>
+<% @vacation.checklists.each do |cl| %>
+  <li><%= link_to cl.name, checklist_path(cl.id) %></li>
+<% end %></ul>
+
 <%= link_to "Back to my vacations", user_path(current_user.id) %>

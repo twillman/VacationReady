@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902052945) do
+ActiveRecord::Schema.define(version: 20160906131445) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20160902052945) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "checklists", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "vacation_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "checklists", ["vacation_id"], name: "index_checklists_on_vacation_id"
+
   create_table "deadlines", force: :cascade do |t|
     t.date     "due_date"
     t.string   "task"
@@ -29,6 +38,16 @@ ActiveRecord::Schema.define(version: 20160902052945) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "complete"
+    t.integer  "checklist_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "items", ["checklist_id"], name: "index_items_on_checklist_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

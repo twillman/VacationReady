@@ -1,0 +1,13 @@
+<h3><%= @checklist.name %></h3>
+<% @checklist.items.each do |item| %>
+  <%= item.name %>
+<% end %>
+
+<%= form_for Item.new do |f| %>
+<div class = "form-group">
+  Add an Item: <%= f.text_field :name %></br>
+  <% f.hidden_field :complete, :value => false %>
+  <% f.hidden_field :checklist_id, :value => @checklist.id %>
+  <%= f.submit %>
+</div>
+<% end %>
